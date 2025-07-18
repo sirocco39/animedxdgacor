@@ -1,11 +1,15 @@
 package com.example.animedxdgacor;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
-import android.widget.PopupMenu;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -23,10 +27,15 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         menuButton = findViewById(R.id.menu_button);
 
-        // Default Fragment
-        loadFragment(new HomeFragment());
+        // Menampilkan HomeFragment sebagai halaman default saat aplikasi dibuka
+        if (savedInstanceState == null) {
+            loadFragment(new HomeFragment());
+            // Menetapkan item 'home' sebagai yang terpilih di navigasi
+            bottomNavigationView.setSelectedItemId(R.id.nav_home);
+        }
 
-        // Bottom Nav listener
+
+        // Listener untuk item di Bottom Navigation
         bottomNavigationView.setOnItemSelectedListener(item -> {
             Fragment selectedFragment = null;
             int itemId = item.getItemId();
@@ -41,38 +50,47 @@ public class MainActivity extends AppCompatActivity {
 
             if (selectedFragment != null) {
                 loadFragment(selectedFragment);
-                return true;
+                return true; // Mengindikasikan bahwa event telah ditangani
             }
 
             return false;
         });
 
-        // Hamburger menu
+        // Listener untuk Hamburger Menu (menu pojok kanan atas)
         menuButton.setOnClickListener(view -> {
-            PopupMenu popupMenu = new PopupMenu(MainActivity.this, menuButton);
-            popupMenu.getMenuInflater().inflate(R.menu.drawer_menu, popupMenu.getMenu());
+            // Inflate layout popup_logout
+            View popupView = getLayoutInflater().inflate(R.layout.popup_logout, null);
 
-            // Ubah warna hamburger jadi oranye saat ditekan
-            menuButton.setColorFilter(getResources().getColor(android.R.color.holo_orange_dark));
+            // Ubah warna hamburger jadi oranye saat popup muncul
+            menuButton.setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.orange));
 
-            popupMenu.setOnDismissListener(menu -> {
-                // Kembalikan warna semula
-                menuButton.setColorFilter(getResources().getColor(android.R.color.black));
+            // Buat popup window
+            PopupWindow popupWindow = new PopupWindow(popupView,
+                    LinearLayout.LayoutParams.WRAP_CONTENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT,
+                    true); // 'true' agar bisa ditutup dengan menekan luar area popup
+
+            // Saat popup ditutup, kembalikan warna hamburger ke hitam
+            popupWindow.setOnDismissListener(() ->
+                    menuButton.setColorFilter(ContextCompat.getColor(MainActivity.this, android.R.color.black))
+            );
+
+            // Temukan tombol logout di dalam layout popup
+            TextView btnLogout = popupView.findViewById(R.id.btn_logout);
+
+            // Aksi saat tombol logout di dalam popup diklik
+            btnLogout.setOnClickListener(v -> {
+                Toast.makeText(MainActivity.this, "Logout berhasil", Toast.LENGTH_SHORT).show();
+                popupWindow.dismiss(); // Menutup popup
+                // Di sini Anda bisa menambahkan logika logout sesungguhnya (misal: kembali ke halaman login)
             });
 
-            popupMenu.setOnMenuItemClickListener(item -> {
-                if (item.getItemId() == R.id.logout) {
-                    Toast.makeText(MainActivity.this, "Logout diklik", Toast.LENGTH_SHORT).show();
-                    // Tambahkan aksi logout sesungguhnya di sini
-                    return true;
-                }
-                return false;
-            });
-
-            popupMenu.show();
+            // Tampilkan popup di dekat menuButton
+            popupWindow.showAsDropDown(menuButton, -100, 40);
         });
     }
 
+    // Fungsi untuk memuat atau mengganti fragment di container
     private void loadFragment(Fragment fragment) {
         getSupportFragmentManager()
                 .beginTransaction()
