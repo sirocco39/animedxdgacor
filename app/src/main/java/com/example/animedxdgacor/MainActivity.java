@@ -27,10 +27,29 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         menuButton = findViewById(R.id.menu_button);
 
-        // Menampilkan HomeFragment sebagai halaman default saat aplikasi dibuka
-        if (savedInstanceState == null) {
+        // 1. Terima data username dari LoginActivity
+        String username = getIntent().getStringExtra("EXTRA_USERNAME");
+
+        // 2. Cek apakah ada username yang dikirim
+        if (username != null && !username.isEmpty()) {
+            // Jika ada, siapkan HomeFragment dan kirim data ke sana
+            HomeFragment homeFragment = new HomeFragment();
+
+            // Buat 'paket' (Bundle) untuk menampung data
+            Bundle bundle = new Bundle();
+            bundle.putString("USERNAME_KEY", username); // Masukkan username ke paket
+
+            // 'Tempelkan' paket data ke instance HomeFragment
+            homeFragment.setArguments(bundle);
+
+            // Muat HomeFragment yang sudah berisi data username
+            loadFragment(homeFragment);
+            bottomNavigationView.setSelectedItemId(R.id.nav_home);
+
+        } else if (savedInstanceState == null) {
+            // Jika tidak ada data login (misal: buka aplikasi biasa),
+            // tampilkan HomeFragment versi standar.
             loadFragment(new HomeFragment());
-            // Menetapkan item 'home' sebagai yang terpilih di navigasi
             bottomNavigationView.setSelectedItemId(R.id.nav_home);
         }
 
