@@ -1,5 +1,6 @@
 package com.example.animedxdgacor;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -99,7 +100,16 @@ public class MainActivity extends AppCompatActivity {
 
             // Aksi saat tombol logout di dalam popup diklik
             btnLogout.setOnClickListener(v -> {
-                Toast.makeText(MainActivity.this, "Logout berhasil", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(MainActivity.this, "Logout berhasil", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+
+            // Menambahkan 'flags' PENTING untuk membersihkan histori halaman
+            // Ini mencegah pengguna menekan tombol 'back' dan kembali ke MainActivity setelah logout
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
+            // Pindah ke halaman login
+                startActivity(intent);
+
                 popupWindow.dismiss(); // Menutup popup
                 // Di sini Anda bisa menambahkan logika logout sesungguhnya (misal: kembali ke halaman login)
             });
