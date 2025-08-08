@@ -4,9 +4,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <TextView
-        android:text="Ini halaman Home"
-        android:textSize="20sp"
+        android:id="@+id/text_view_welcome"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:text="@string/text_view_welcome"
+        android:textSize="20sp"
+        android:fontFamily="@font/nunito_extrabold"/>
 </LinearLayout>
-
