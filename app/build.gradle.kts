@@ -29,6 +29,9 @@ android {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
+    buildFeatures {
+        viewBinding = true
+    }
 }
 
 dependencies {
@@ -41,4 +44,7 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
+    implementation("androidx.recyclerview:recyclerview:1.3.2") // Untuk RecyclerView
+    implementation("androidx.cardview:cardview:1.0.0")       // Untuk CardView
+    implementation("com.github.bumptech.glide:glide:4.16.0")
 }
