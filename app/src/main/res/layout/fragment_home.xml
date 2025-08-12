@@ -1,13 +1,523 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:padding="20dp"
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <TextView
-        android:id="@+id/text_view_welcome"
-        android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@android:color/white"
+    tools:context=".HomeFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/text_view_welcome"
-        android:textSize="20sp"
-        android:fontFamily="@font/nunito_extrabold"/>
-</LinearLayout>
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <!-- Header -->
+        <TextView
+            android:id="@+id/text_view_welcome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:text="@string/text_view_welcome"
+            android:textSize="25sp"
+            android:fontFamily="@font/nunito_extrabold"
+            android:textColor="@color/black"/>
+
+        <!-- Tab Control Layout -->
+        <LinearLayout
+            android:id="@+id/tab_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/button_news"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/news"
+                android:textColor="@android:color/white"
+                android:textSize="16sp"
+                android:textAllCaps="false"
+                android:layout_marginEnd="20dp"
+                android:stateListAnimator="@null"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:paddingVertical="12dp"
+                android:background="@drawable/home_rounded_button_orange"
+                app:backgroundTint="@null"/>
+
+            <Button
+                android:id="@+id/button_manga"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/manga"
+                android:textColor="@android:color/black"
+                android:textSize="16sp"
+                android:textAllCaps="false"
+                android:stateListAnimator="@null"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:paddingVertical="12dp"
+                android:background="@drawable/home_rounded_button_white"
+                app:backgroundTint="@null"/>
+        </LinearLayout>
+
+        <!-- Container untuk konten tab -->
+        <FrameLayout
+            android:id="@+id/tab_content_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp">
+
+            <!-- Konten Tab NEWS -->
+            <LinearLayout
+                android:id="@+id/news_content_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="visible">
+
+                <!-- Banner Carousel -->
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/banner_view_pager"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp" />
+
+                <!-- Recommendation Manga Section -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="18dp"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:id="@+id/recommendation_manga_title"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/recommendation_manga_for_you"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:fontFamily="@font/nunito_extrabold"
+                        android:textColor="#FF8C00"/>
+
+                    <TextView
+                        android:id="@+id/recommendation_manga_view_all"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/view_all"
+                        android:textColor="@color/black"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:scrollbars="none">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <!-- Manga 1 -->
+                        <ImageView
+                            android:layout_width="120dp"
+                            android:layout_height="180dp"
+                            android:layout_marginEnd="16dp"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/recom_manga1"
+                            android:contentDescription="@string/manga_cover_description" />
+
+                        <!-- Manga 2 -->
+
+                        <!-- Manga 3 -->
+
+                        <ImageView
+                            android:layout_width="120dp"
+                            android:layout_height="180dp"
+                            android:layout_marginEnd="16dp"
+                            android:contentDescription="@string/manga_cover_description"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/recom_manga2" />
+
+                        <ImageView
+                            android:layout_width="120dp"
+                            android:layout_height="180dp"
+                            android:layout_marginEnd="16dp"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/recom_manga3"
+                            android:contentDescription="@string/manga_cover_description" />
+                    </LinearLayout>
+                </HorizontalScrollView>
+
+                <!-- Recommendation Anime Section -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="18dp"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:id="@+id/recommendation_anime_title"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/recommendation_anime_for_you"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:fontFamily="@font/nunito_extrabold"
+                        android:textColor="#FF8C00"/>
+
+                    <TextView
+                        android:id="@+id/recommendation_anime_view_all"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/view_all"
+                        android:textColor="@android:color/black"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:scrollbars="none">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <!-- Anime 1 -->
+                        <ImageView
+                            android:layout_width="120dp"
+                            android:layout_height="180dp"
+                            android:layout_marginEnd="16dp"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/recom_manga1"
+                            android:contentDescription="@string/anime_cover_description" />
+
+                        <!-- Anime 2 -->
+                        <ImageView
+                            android:layout_width="120dp"
+                            android:layout_height="180dp"
+                            android:layout_marginEnd="16dp"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/recom_manga2"
+                            android:contentDescription="@string/anime_cover_description" />
+
+                        <!-- Anime 3 -->
+                        <ImageView
+                            android:layout_width="120dp"
+                            android:layout_height="180dp"
+                            android:layout_marginEnd="16dp"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/recom_manga3"
+                            android:contentDescription="@string/anime_cover_description" />
+                    </LinearLayout>
+                </HorizontalScrollView>
+            </LinearLayout>
+
+            <!-- Konten Tab MANGA -->
+            <LinearLayout
+                android:id="@+id/manga_content_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <!-- Daftar manga dalam GridLayout atau LinearLayout vertikal -->
+                <!-- Ini adalah placeholder, Anda bisa menggantinya dengan RecyclerView -->
+                <GridLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:columnCount="3"
+                    android:rowOrderPreserved="false"
+                    android:useDefaultMargins="true">
+
+                    <!-- Item Manga 1 -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_columnWeight="1"
+                        android:orientation="vertical"
+                        android:gravity="center_horizontal">
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="150dp"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/recom_manga1" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/one_piece"
+                            android:textSize="12sp"
+                            android:layout_marginTop="4dp"/>
+                    </LinearLayout>
+
+                    <!-- Item Manga 2 -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_columnWeight="1"
+                        android:orientation="vertical"
+                        android:gravity="center_horizontal">
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="150dp"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/recom_manga2" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/slam_dunk"
+                            android:textSize="12sp"
+                            android:layout_marginTop="4dp"/>
+                    </LinearLayout>
+
+                    <!-- Item Manga 3 -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_columnWeight="1"
+                        android:orientation="vertical"
+                        android:gravity="center_horizontal">
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="150dp"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/recom_manga3" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/spy_x_family"
+                            android:textSize="12sp"
+                            android:layout_marginTop="4dp"/>
+                    </LinearLayout>
+
+                    <!-- Tambahkan item manga lainnya di sini -->
+                </GridLayout>
+            </LinearLayout>
+        </FrameLayout>
+
+    </LinearLayout>
+</ScrollView>
+
+
+
+
+
+
+    <!--<?xml version="1.0" encoding="utf-8"?>-->
+<!--<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    xmlns:tools="http://schemas.android.com/tools"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="match_parent"-->
+<!--    android:background="@android:color/white"-->
+<!--    tools:context=".HomeFragment">-->
+
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="vertical"-->
+<!--        android:padding="20dp">-->
+
+<!--        &lt;!&ndash; Header &ndash;&gt;-->
+<!--        <TextView-->
+<!--            android:id="@+id/text_view_welcome"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginBottom="16dp"-->
+<!--            android:text="@string/text_view_welcome"-->
+<!--            android:textSize="25sp"-->
+<!--            android:fontFamily="@font/nunito_extrabold"/>-->
+
+<!--        &lt;!&ndash; Tab Control Layout &ndash;&gt;-->
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="horizontal"-->
+<!--            android:background="@drawable/rounded_tabs_background"-->
+<!--            android:padding="8dp">-->
+
+<!--            <Button-->
+<!--                android:id="@+id/button_news"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_weight="1"-->
+<!--                android:text="@string/news"-->
+<!--                android:textColor="@android:color/white"-->
+<!--                android:textSize="16sp"-->
+<!--                android:textAllCaps="false"-->
+<!--                android:stateListAnimator="@null"-->
+<!--                android:insetTop="0dp"-->
+<!--                android:insetBottom="0dp"-->
+<!--                android:paddingVertical="12dp"-->
+<!--                android:background="@drawable/home_rounded_button_orange"/>-->
+
+<!--            <Button-->
+<!--                android:id="@+id/button_manga"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_weight="1"-->
+<!--                android:text="@string/manga"-->
+<!--                android:textColor="@android:color/black"-->
+<!--                android:textSize="16sp"-->
+<!--                android:textAllCaps="false"-->
+<!--                android:stateListAnimator="@null"-->
+<!--                android:insetTop="0dp"-->
+<!--                android:insetBottom="0dp"-->
+<!--                android:paddingVertical="12dp"-->
+<!--                android:background="@drawable/home_rounded_button_white"/>-->
+<!--        </LinearLayout>-->
+
+<!--        &lt;!&ndash; Banner Carousel &ndash;&gt;-->
+<!--        <androidx.viewpager2.widget.ViewPager2-->
+<!--            android:id="@+id/banner_view_pager"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="200dp"-->
+<!--            android:layout_marginTop="16dp"/>-->
+
+<!--        &lt;!&ndash; Recommendation Manga Section &ndash;&gt;-->
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="24dp"-->
+<!--            android:orientation="horizontal"-->
+<!--            android:gravity="center_vertical">-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/recommendation_manga_title"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_weight="1"-->
+<!--                android:text="@string/recommendation_manga_for_you"-->
+<!--                android:textSize="20sp"-->
+<!--                android:textStyle="bold"-->
+<!--                android:fontFamily="@font/nunito_extrabold"/>-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/recommendation_manga_view_all"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="@string/view_all"-->
+<!--                android:textColor="@android:color/darker_gray"-->
+<!--                android:textSize="14sp" />-->
+<!--        </LinearLayout>-->
+
+<!--        <HorizontalScrollView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="16dp"-->
+<!--            android:scrollbars="none">-->
+
+<!--            <LinearLayout-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="horizontal">-->
+
+<!--                &lt;!&ndash; Manga 1 &ndash;&gt;-->
+<!--                <ImageView-->
+<!--                    android:layout_width="120dp"-->
+<!--                    android:layout_height="180dp"-->
+<!--                    android:layout_marginEnd="16dp"-->
+<!--                    android:scaleType="centerCrop"-->
+<!--                    android:src="@drawable/recom_manga1"-->
+<!--                    android:contentDescription="@string/manga_cover_description" />-->
+
+<!--                &lt;!&ndash; Manga 2 &ndash;&gt;-->
+<!--                <ImageView-->
+<!--                    android:layout_width="120dp"-->
+<!--                    android:layout_height="180dp"-->
+<!--                    android:layout_marginEnd="16dp"-->
+<!--                    android:scaleType="centerCrop"-->
+<!--                    android:src="@drawable/recom_manga2"-->
+<!--                    android:contentDescription="@string/manga_cover_description" />-->
+
+<!--                &lt;!&ndash; Manga 3 &ndash;&gt;-->
+<!--                <ImageView-->
+<!--                    android:layout_width="120dp"-->
+<!--                    android:layout_height="180dp"-->
+<!--                    android:layout_marginEnd="16dp"-->
+<!--                    android:scaleType="centerCrop"-->
+<!--                    android:src="@drawable/recom_manga3"-->
+<!--                    android:contentDescription="@string/manga_cover_description" />-->
+<!--            </LinearLayout>-->
+<!--        </HorizontalScrollView>-->
+
+<!--        &lt;!&ndash; Recommendation Anime Section &ndash;&gt;-->
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="24dp"-->
+<!--            android:orientation="horizontal"-->
+<!--            android:gravity="center_vertical">-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/recommendation_anime_title"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_weight="1"-->
+<!--                android:text="@string/recommendation_anime_for_you"-->
+<!--                android:textSize="20sp"-->
+<!--                android:textStyle="bold"-->
+<!--                android:fontFamily="@font/nunito_extrabold"/>-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/recommendation_anime_view_all"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="@string/view_all"-->
+<!--                android:textColor="@android:color/darker_gray"-->
+<!--                android:textSize="14sp" />-->
+<!--        </LinearLayout>-->
+
+<!--        <HorizontalScrollView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="16dp"-->
+<!--            android:scrollbars="none">-->
+
+<!--            <LinearLayout-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="horizontal">-->
+
+<!--                &lt;!&ndash; Anime 1 &ndash;&gt;-->
+<!--                <ImageView-->
+<!--                    android:layout_width="120dp"-->
+<!--                    android:layout_height="180dp"-->
+<!--                    android:layout_marginEnd="16dp"-->
+<!--                    android:scaleType="centerCrop"-->
+<!--                    android:src="@drawable/recom_manga1"-->
+<!--                    android:contentDescription="@string/anime_cover_description" />-->
+
+<!--                &lt;!&ndash; Anime 2 &ndash;&gt;-->
+<!--                <ImageView-->
+<!--                    android:layout_width="120dp"-->
+<!--                    android:layout_height="180dp"-->
+<!--                    android:layout_marginEnd="16dp"-->
+<!--                    android:scaleType="centerCrop"-->
+<!--                    android:src="@drawable/recom_manga2"-->
+<!--                    android:contentDescription="@string/anime_cover_description" />-->
+
+<!--                &lt;!&ndash; Anime 3 &ndash;&gt;-->
+<!--                <ImageView-->
+<!--                    android:layout_width="120dp"-->
+<!--                    android:layout_height="180dp"-->
+<!--                    android:layout_marginEnd="16dp"-->
+<!--                    android:scaleType="centerCrop"-->
+<!--                    android:src="@drawable/recom_manga3"-->
+<!--                    android:contentDescription="@string/anime_cover_description" />-->
+<!--            </LinearLayout>-->
+<!--        </HorizontalScrollView>-->
+
+<!--    </LinearLayout>-->
+<!--</ScrollView>-->

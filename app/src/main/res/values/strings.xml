@@ -3,4 +3,14 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="text_view_welcome">Welcome, Username</string>
+    <string name="news">NEWS</string>
+    <string name="manga">MANGA</string>
+    <string name="recommendation_manga_for_you">Recommendation Manga For You</string>
+    <string name="view_all">View All</string>
+    <string name="manga_cover_description">manga_cover_description</string>
+    <string name="recommendation_anime_for_you">Recommendation Anime For You</string>
+    <string name="anime_cover_description">anime_cover_description</string>
+    <string name="one_piece">One Piece</string>
+    <string name="slam_dunk">Slam Dunk</string>
+    <string name="spy_x_family">Spy x Family</string>
 </resources>
