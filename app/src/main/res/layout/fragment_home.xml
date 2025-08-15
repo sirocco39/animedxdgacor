@@ -1,12 +1,174 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:padding="20dp"
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <TextView
-        android:text="Ini halaman Home"
-        android:textSize="20sp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-</LinearLayout>
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@android:color/white"
+    tools:context=".HomeFragment">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp"
+        android:paddingEnd="4dp"
+        tools:ignore="RtlSymmetry">
+
+        <TextView
+            android:id="@+id/text_view_welcome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:text="@string/text_view_welcome"
+            android:textSize="25sp"
+            android:fontFamily="@font/nunito_extrabold"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingEnd="16dp">
+
+            <Button
+                android:id="@+id/button_news"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="20dp"
+                android:layout_weight="1"
+                android:background="@drawable/home_rounded_button_orange"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:paddingVertical="12dp"
+                android:stateListAnimator="@null"
+                android:text="@string/news"
+                android:textAllCaps="false"
+                android:textColor="@android:color/white"
+                android:textSize="16sp"
+                app:backgroundTint="@null"
+                android:fontFamily="@font/nunito_extrabold"/>
+
+            <Button
+                android:id="@+id/button_manga"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/manga"
+                android:textColor="@android:color/black"
+                android:textSize="16sp"
+                android:textAllCaps="false"
+                android:stateListAnimator="@null"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:paddingVertical="12dp"
+                android:background="@drawable/home_rounded_button_white"
+                app:backgroundTint="@null"
+                android:fontFamily="@font/nunito_extrabold"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/news_content_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="visible"
+            android:paddingEnd="16dp">
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/banner_view_pager"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginTop="16dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/news_manga_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/recommendation_manga_for_you"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/nunito_extrabold"
+                    android:textColor="#FF8C00"/>
+
+                <TextView
+                    android:id="@+id/news_manga_view_all"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/view_all"
+                    android:textColor="@android:color/black"
+                    android:textSize="14sp"/>
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/news_manga_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal"
+                android:scrollbars="none"
+                tools:listitem="@layout/item_recom_manga"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/recommendation_anime_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/recommendation_anime_for_you"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/nunito_extrabold"
+                    android:textColor="#FF8C00"/>
+
+                <TextView
+                    android:id="@+id/news_anime_view_all"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/view_all"
+                    android:textColor="@android:color/black"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/anime_recommendation_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal"
+                android:scrollbars="none"
+                tools:listitem="@layout/item_recom_anime"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/manga_content_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone"
+            android:paddingEnd="0dp">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/manga_grid_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:scrollbars="none"
+                tools:listitem="@layout/item_recom_manga"
+                />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

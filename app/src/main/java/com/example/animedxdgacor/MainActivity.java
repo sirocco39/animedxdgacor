@@ -120,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // Fungsi untuk memuat atau mengganti fragment di container
-    private void loadFragment(Fragment fragment) {
+    void loadFragment(Fragment fragment) {
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.fragment_container, fragment)
