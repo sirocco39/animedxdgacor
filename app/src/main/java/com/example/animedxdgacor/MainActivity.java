@@ -28,32 +28,21 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         menuButton = findViewById(R.id.menu_button);
 
-        // 1. Terima data username dari LoginActivity
+        // Ambil data username HANYA SATU KALI di awal onCreate()
         String username = getIntent().getStringExtra("EXTRA_USERNAME");
 
-        // 2. Cek apakah ada username yang dikirim
+        // Periksa data username dan muat fragment awal yang sesuai
         if (username != null && !username.isEmpty()) {
-            // Jika ada, siapkan HomeFragment dan kirim data ke sana
             HomeFragment homeFragment = new HomeFragment();
-
-            // Buat 'paket' (Bundle) untuk menampung data
             Bundle bundle = new Bundle();
-            bundle.putString("USERNAME_KEY", username); // Masukkan username ke paket
-
-            // 'Tempelkan' paket data ke instance HomeFragment
+            bundle.putString("USERNAME_KEY", username);
             homeFragment.setArguments(bundle);
-
-            // Muat HomeFragment yang sudah berisi data username
             loadFragment(homeFragment);
-            bottomNavigationView.setSelectedItemId(R.id.nav_home);
-
-        } else if (savedInstanceState == null) {
-            // Jika tidak ada data login (misal: buka aplikasi biasa),
-            // tampilkan HomeFragment versi standar.
+        } else {
+            // Jika tidak ada data username, muat HomeFragment standar
             loadFragment(new HomeFragment());
-            bottomNavigationView.setSelectedItemId(R.id.nav_home);
         }
-
+        bottomNavigationView.setSelectedItemId(R.id.nav_home);
 
         // Listener untuk item di Bottom Navigation
         bottomNavigationView.setOnItemSelectedListener(item -> {
@@ -63,16 +52,30 @@ public class MainActivity extends AppCompatActivity {
             if (itemId == R.id.nav_list) {
                 selectedFragment = new ListFragment();
             } else if (itemId == R.id.nav_home) {
-                selectedFragment = new HomeFragment();
+                // Gunakan kembali variabel username yang sudah ada
+                HomeFragment homeFragment = new HomeFragment();
+                if (username != null && !username.isEmpty()) {
+                    Bundle bundle = new Bundle();
+                    bundle.putString("USERNAME_KEY", username);
+                    homeFragment.setArguments(bundle);
+                }
+                selectedFragment = homeFragment;
+
             } else if (itemId == R.id.nav_about) {
-                selectedFragment = new AboutFragment();
+                // Gunakan kembali variabel username yang sudah ada
+                AboutFragment aboutFragment = new AboutFragment();
+                if (username != null && !username.isEmpty()) {
+                    Bundle bundle = new Bundle();
+                    bundle.putString("USERNAME_KEY", username);
+                    aboutFragment.setArguments(bundle);
+                }
+                selectedFragment = aboutFragment;
             }
 
             if (selectedFragment != null) {
                 loadFragment(selectedFragment);
-                return true; // Mengindikasikan bahwa event telah ditangani
+                return true;
             }
-
             return false;
         });
 
