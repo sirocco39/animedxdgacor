@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.example.animedxdgacor.databinding.ActivityDetailAnimeBinding;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 
 import model.Anime;
 
@@ -58,6 +59,7 @@ public class DetailAnimeActivity extends AppCompatActivity {
         AlertDialog dialog = builder.create();
 
         // Mengambil referensi view dari layout dialog
+        TextInputLayout tilReviewLayout = dialogView.findViewById(R.id.til_review_layout); // <-- PENTING
         TextInputEditText etReviewInput = dialogView.findViewById(R.id.et_review_input);
         Button btnClose = dialogView.findViewById(R.id.btn_close);
         Button btnSubmit = dialogView.findViewById(R.id.btn_submit);
@@ -73,12 +75,19 @@ public class DetailAnimeActivity extends AppCompatActivity {
 
             // Validasi: Cek apakah input kosong
             if (reviewText.isEmpty()) {
-                // Jika kosong, tampilkan pesan error
-                etReviewInput.setError("Review tidak boleh kosong!");
+                // ==========================================================
+                // GANTI BAGIAN INI
+                // Hapus atau beri comment: etReviewInput.setError("...");
+                // Gunakan yang ini:
+                tilReviewLayout.setError("Review must not be empty!");
+                // ==========================================================
+
             } else {
-                // Jika tidak kosong, lakukan sesuatu (misalnya tampilkan Toast)
+                // Jangan lupa hapus errornya juga dari tilReviewLayout
+                tilReviewLayout.setError(null);
+
                 Toast.makeText(this, "Review Submitted: " + reviewText, Toast.LENGTH_LONG).show();
-                dialog.dismiss(); // Tutup dialog setelah submit berhasil
+                dialog.dismiss();
             }
         });
 
@@ -99,6 +108,7 @@ public class DetailAnimeActivity extends AppCompatActivity {
         binding.tvDetailGenre.setText(anime.getGenre());
         binding.tvDetailEpisodes.setText("TV " + anime.getJumlahEpisode() + " Eps");
         binding.tvDetailSynopsis.setText(anime.getSinopsis());
+        binding.tvDetailYear.setText(String.valueOf(anime.getTahun()));
     }
 
     @Override

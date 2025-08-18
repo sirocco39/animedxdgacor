@@ -2,7 +2,8 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="orange">#FFA000</color>
+    <color name="orange">#FF8C00</color>
     <color name="red">#F44336</color>
     <color name="login_button_color">#FDB813</color>
+    <color name="icon_orange">#FFA500</color>
 </resources>
