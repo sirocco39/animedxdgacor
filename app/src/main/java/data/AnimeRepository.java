@@ -4,29 +4,26 @@ import java.util.ArrayList;
 
 import model.Anime;
 
-/**
- * Kelas ini berfungsi sebagai penyedia data dummy.
- * Dalam aplikasi nyata, kelas ini bisa mengambil data dari database lokal atau dari internet (API).
- */
+
 public class AnimeRepository {
 
     public static ArrayList<Anime> getDummyData() {
         ArrayList<Anime> listAnime = new ArrayList<>();
 
-        // Data 1: ID: INVADED
+        
         listAnime.add(new Anime(
-                R.drawable.idinvaded, // Gambar diisi 0 sebagai placeholder
+                R.drawable.idinvaded, 
                 "ID: INVADED",
                 2020,
                 "Sci-Fi & Fantasy, Action & Adventure, Mystery",
                 "Sakaido is a genius detective who can track down any criminal. But when his daughter is murdered, revenge lands him on the other side of the law. Now in prison, he helps the police solve mysteries using a system that invades a person’s identity. Little by little, a trail of blood forms, and it all leads back to his daughter’s...",
-                8.02, // Rating dummy
-                13    // Jumlah episode dummy
+                8.02, 
+                13    
         ));
 
-        // Data 2: Kaiju No. 8
+        
         listAnime.add(new Anime(
-                R.drawable.kaijuno8, // Gambar placeholder
+                R.drawable.kaijuno8, 
                 "Kaiju No. 8",
                 2024,
                 "Action & Adventure, Sci-Fi & Fantasy",
@@ -35,20 +32,20 @@ public class AnimeRepository {
                 12
         ));
 
-        // Data 3: Bungou Stray Dogs
+        
         listAnime.add(new Anime(
-                R.drawable.bsd, // Gambar placeholder
+                R.drawable.bsd, 
                 "Bungou Stray Dogs",
                 2016,
                 "Comedy, Crime, Mystery, Action & Adventure, Sci-Fi & Fantasy, Drama",
                 "Unconfident loner Atsushi Nakajima joins the Armed Detective Agency, a group of operatives who fight Port Mafia with their supernatural abilities.",
                 8.48,
-                61 // Total episode dari beberapa season
+                61 
         ));
 
-        // Data 4: Gintama
+        
         listAnime.add(new Anime(
-                R.drawable.gintama, // Gambar placeholder
+                R.drawable.gintama, 
                 "Gintama",
                 2006,
                 "Action & Adventure, Comedy, Sci-Fi & Fantasy",
@@ -57,9 +54,9 @@ public class AnimeRepository {
                 367
         ));
 
-        // Data 5: Steins;Gate
+        
         listAnime.add(new Anime(
-                R.drawable.steinsgate, // Gambar placeholder
+                R.drawable.steinsgate, 
                 "Steins;Gate",
                 2011,
                 "Sci-Fi & Fantasy, Mystery, Comedy",

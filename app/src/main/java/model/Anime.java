@@ -12,7 +12,7 @@ public class Anime implements Parcelable {
     private double rating;
     private int jumlahEpisode;
 
-    // Constructor
+    
     public Anime(int gambar, String judul, int tahun, String genre, String sinopsis, double rating, int jumlahEpisode) {
         this.gambar = gambar;
         this.judul = judul;
@@ -23,7 +23,7 @@ public class Anime implements Parcelable {
         this.jumlahEpisode = jumlahEpisode;
     }
 
-    // Getter methods
+    
     public int getGambar() { return gambar; }
     public String getJudul() { return judul; }
     public int getTahun() { return tahun; }
@@ -32,7 +32,7 @@ public class Anime implements Parcelable {
     public double getRating() { return rating; }
     public int getJumlahEpisode() { return jumlahEpisode; }
 
-    // --- Implementasi Parcelable ---
+    
 
     protected Anime(Parcel in) {
         gambar = in.readInt();

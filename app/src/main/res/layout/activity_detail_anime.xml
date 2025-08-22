@@ -186,6 +186,6 @@
         android:layout_alignParentBottom="true"
         android:layout_margin="16dp"
         android:text="REVIEW"
-        android:backgroundTint="@color/orange"/>
+        android:backgroundTint="@color/button_review_color_selector"/>
 
 </RelativeLayout>

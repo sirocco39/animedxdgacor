@@ -10,8 +10,8 @@ import com.google.android.material.circularreveal.cardview.CircularRevealCardVie
 
 import java.util.List;
 
-// Import class binding yang otomatis digenerate dari item_anime.xml
-import com.example.animedxdgacor.databinding.ItemAnimeBinding;// Ganti dengan package Anda
+
+import com.example.animedxdgacor.databinding.ItemAnimeBinding;
 
 import model.Anime;
 
@@ -31,7 +31,7 @@ public class AnimeAdapter extends RecyclerView.Adapter<AnimeAdapter.AnimeViewHol
     @NonNull
     @Override
     public AnimeViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        // Menggunakan ViewBinding untuk inflate layout
+        
         ItemAnimeBinding binding = ItemAnimeBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
         return new AnimeViewHolder(binding);
     }
@@ -51,7 +51,7 @@ public class AnimeAdapter extends RecyclerView.Adapter<AnimeAdapter.AnimeViewHol
         return animeList.size();
     }
 
-    // ViewHolder menggunakan ViewBinding
+    
     public static class AnimeViewHolder extends RecyclerView.ViewHolder {
         private final ItemAnimeBinding binding;
 
@@ -71,7 +71,7 @@ public class AnimeAdapter extends RecyclerView.Adapter<AnimeAdapter.AnimeViewHol
         }
     }
 
-    // Interface untuk click
+    
     public interface OnItemClickCallback {
         void onItemClicked(Anime data);
     }

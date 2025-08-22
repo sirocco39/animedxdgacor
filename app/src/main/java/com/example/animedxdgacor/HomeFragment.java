@@ -31,7 +31,7 @@ public class HomeFragment extends Fragment {
     private Button newsButton;
     private Button mangaButton;
 
-    // Variabel untuk layout konten
+    
     private LinearLayout newsContentLayout;
     private LinearLayout mangaContentLayout;
 
@@ -92,7 +92,7 @@ public class HomeFragment extends Fragment {
 
         newsButton.setOnClickListener(v -> {
             updateTabButtons(newsButton, mangaButton);
-            showNewsContent(); // Tampilkan konten berita
+            showNewsContent(); 
         });
 
         mangaButton.setOnClickListener(v -> {
